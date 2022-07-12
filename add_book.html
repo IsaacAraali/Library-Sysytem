@@ -1,0 +1,77 @@
+{% load crispy_forms_tags %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: aliceblue;
+        text-align: justify;
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #a40c1e;
+        width: 100%;
+      }
+      li {
+        float: left;
+      }
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      .active {
+        background-color: aliceblue;
+        color: black;
+      }
+      li :hover:not(.active) {
+        background-color: #2d608e;
+      }
+      .logo {
+        width: 80%;
+      }
+      .navbar {
+        margin-top: 5%;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li><img class="logo" src="{% static 'logo1.PNG' %}" alt="logo" /></li>
+      <div class="navbar">
+        <li>
+          <a href="{% url 'available_books' %}">Available books</a>
+        </li>
+        <li>
+          <a href="">Borrowed books</a>
+        </li>
+        <li>
+          <a href="">Notifications</a>
+        </li>
+        <li>
+          <a class="active" href="{% url 'add_book' %}">Add a Book</a>
+        </li>
+        <li>
+          <a href="{% url 'logout' %}">Logout</a>
+        </li>
+      </div>
+    </ul>
+    <form method="POST" action="" , enctype="multipart/form-data">
+      {% csrf_token %} {{ form|crispy }}
+      <button type="submit">ADD BOOK</button>
+    </form>
+    <p>
+      You can see the available books
+      <a href="{% url 'available_books' %}">here</a>
+    </p>
+  </body>
+</html>

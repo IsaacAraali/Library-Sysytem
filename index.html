@@ -1,0 +1,9 @@
+{% extends 'base/main.html' %} {% block content %}
+<h1>Welcome to the library!</h1>
+<h2>The library is here to help you..</h2>
+<p>
+  You can <a href="{% url 'login' %}">sign in</a> or
+  <a href="{% url 'register' %}">create an account</a> with us to see more of
+  our interesting features.
+</p>
+{% endblock content %}
