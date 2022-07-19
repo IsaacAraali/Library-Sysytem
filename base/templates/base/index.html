@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: aliceblue;
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #a40c1e;
+        width: 100%;
+      }
+      li {
+        float: left;
+      }
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      li :hover {
+        background-color: #2d608e;
+      }
+      .logo {
+        width: 80%;
+      }
+      .navbar {
+        margin-top: 5%;
+        margin-left: 80%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center; color: green">
+      <strong>Welcome to the library!</strong>
+    </h1>
+    {% if messages %} {% for message in messages %} {{ message }} {% endfor %}
+    {% endif %}
+    <ul>
+      <li><img class="logo" src="{% static 'logo1.PNG' %}" alt="logo" /></li>
+      <div class="navbar">
+        <li>
+          <a href="{% url 'login' %}">Login</a>
+        </li>
+        <li>
+          <a href="">Sign up</a>
+        </li>
+      </div>
+    </ul>
+
+    <h2>The library is here to help you..</h2>
+    <p>
+      You can <a href="{% url 'login' %}">sign in</a> or you can create an
+      account with us as a <a href="{% url 'register1' %}">librarian</a> or
+      <a href="{% url 'register2' %}">student</a>
+      for more of our interesting features.
+    </p>
+  </body>
+</html>
