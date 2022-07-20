@@ -8,8 +8,6 @@ django-heroku==0.3.1
 filelock==3.6.0
 gunicorn==20.1.0
 importlib-metadata==4.11.2
-mysql-connector-python==8.0.29
-mysqlclient @ file:///C:/Users/HP/Downloads/mysqlclient-1.4.6-cp37-cp37m-win_amd64.whl
 natgrid @ file:///C:/Users/HP/Desktop/pop/natgrid-0.2.1-cp37-cp37m-win_amd64.whl
 Pillow==9.2.0
 pipenv==2022.1.8
