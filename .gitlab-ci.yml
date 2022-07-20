@@ -25,7 +25,7 @@ deploy:
   image: ruby:latest
   stage: deploy
   before_script:
-    - gen install dpl
+    - gem install dpl
   
   script:
     - dpl --provider=heroku --app=lib-syst --api-key=2e0e9407-1077-432d-a81d-41cf59f00e21
