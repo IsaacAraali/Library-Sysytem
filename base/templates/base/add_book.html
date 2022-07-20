@@ -8,7 +8,7 @@
     <title>library system | add a book</title>
     <style>
       body {
-        font-size: 2em;
+        
         background-color: aliceblue;
         text-align: justify;
       }
@@ -44,6 +44,9 @@
         margin-top: 5%;
         float: right;
       }
+      .container {
+        font-size: 2em;
+      }
     </style>
   </head>
   <body>
@@ -67,6 +70,7 @@
         </li>
       </div>
     </ul>
+    <div class="container">
     <form method="POST" action="" , enctype="multipart/form-data">
       {% csrf_token %} {{ form|crispy }}
       <button type="submit">ADD BOOK</button>
@@ -75,5 +79,6 @@
       You can see the available books
       <a href="{% url 'available_books' %}">here</a>
     </p>
+    </div>
   </body>
 </html>
