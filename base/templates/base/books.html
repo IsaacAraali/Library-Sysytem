@@ -8,7 +8,7 @@
     <title>library system | available books</title>
     <style>
          body {
-          font-size: 2em;
+          
           background-image: url('{% static "lib1.jpg" %}');
           background-repeat: no-repeat;
           background-attachment: fixed;
@@ -47,7 +47,9 @@
         float: right;
         margin-top: 5%;
       }
-  
+      .container {
+        font-size: 2em;
+      }
 
     </style>
   </head>
@@ -74,7 +76,7 @@
     </li>
       </div>
 </ul>
-    
+    <div class="container">
     {% for item in book %}
     <p><hr />
     <div style="color: lawngreen;">
@@ -92,5 +94,6 @@
     <hr /></p>
     {% endfor %}
     <p style="color: aliceblue;">you can <a href="{% url 'add_book' %}" style="color: greenyellow;"> add </a> a book</p>
+    </div>
   </body>
 </html>    
