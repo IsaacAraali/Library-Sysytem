@@ -29,10 +29,10 @@ deploy:
     - gen install dpl
   
   script:
-    - dpl --provider=heroku --app=lib-syst --api-key=2e0e9407-1077-432d-a81d-41cf59f00e21
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
 
   environment:
     name: main
-    url: 
+    url: $HEROKU_APP_HOST
   only:
     - murungi
