@@ -8,7 +8,7 @@
 stages:
 - test
 - deploy
-sast:
+test:
   stage: test
   image: python:3.7.9
   before_script:
@@ -19,7 +19,7 @@ sast:
     - python manage.py migrate
     - python manage.py collectstatic --noinput
   only:
-    - murungi
+    - main
 
 deploy:
   image: ruby:latest
@@ -33,7 +33,6 @@ deploy:
 
   environment:
     name: main
-    url: 
     url: $HEROKU_APP_HOST
   only:
-    - murungi
+    - main
