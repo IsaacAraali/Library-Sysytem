@@ -18,6 +18,7 @@ test:
   script:
     - python manage.py migrate
     - python manage.py collectstatic --noinput
+    - python manage.py collectmedia --noinput
   only:
     - main
 
