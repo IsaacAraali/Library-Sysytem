@@ -5,11 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>library system | available books</title>
+    <title>Document</title>
     <style>
          body {
-          
-          background-color: aliceblue;
+          background-image: url('{% static "lib1.jpg" %}');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-position: center;
+          background-size: cover;
       }
       ul {
         list-style-type: none;
@@ -40,7 +43,6 @@
         width: 80%;
       }
       .navbar {
-        float: right;
         margin-top: 5%;
         float: right;
       }
@@ -60,16 +62,13 @@
   <li><img class="logo" src="{% static 'logo1.PNG' %}" alt="logo" /></li>
       <div class="navbar">
     <li>
-      <a class="active" href="{% url 'available_books' %}">Available books</a>
+      <a class="active" href="{% url 'book_list' %}">Available books</a>
     </li>
     <li>
-      <a href="">Borrowed books</a>
+      <a href="">My books</a>
     </li>
     <li>
       <a href="">Notifications</a>
-    </li>
-    <li>
-      <a href="{% url 'add_book' %}">Add a Book</a>
     </li>
     <li>
       <a href="{% url 'logout' %}">Logout</a>
@@ -92,11 +91,12 @@
     <img src="{{ item.image.url }}" alt="book cover", width="10%">
   </a>
     {% endif %} <br>
+    <div style="color: aliceblue;">
     <b>Author:</b> {{ item.author }} <br />
     <b>Description:</b> {{ item.description }}
+    </div>
     <hr /></p>
     {% endfor %}
-    <p style="color: aliceblue;">you can <a href="{% url 'add_book' %}" style="color: greenyellow;"> add </a> a book</p>
   </div>
   </body>
 </html>    

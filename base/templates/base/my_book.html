@@ -7,7 +7,25 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>hello world</h1>
-    {% for item in book %}{{ item.name }} {%endfor %}
+    {% for item in book %}
+    <hr />
+    <div style="color: lawngreen">
+      <h1><strong>{{ item.name }} </strong><br /></h1>
+    </div>
+    {% if item.image %}
+    <img src="{{ item.image.url }}" alt="book cover" , width="10%" />
+    {% endif %} <br />
+
+    <p><b>Author:</b> {{ item.author }}</p>
+    <p><b>Description:</b> {{ item.description }}</p>
+    <hr />
+
+    <p><a href="update_book/{{ item.pk }}">edit book</a></p>
+    <p><a href="delete_book/{{ item.pk }}">Delete book</a></p>
+    {% endfor %}
+    <p>
+      Go back to the list of
+      <a href="{% url 'available_books' %}">available books</a>
+    </p>
   </body>
 </html>
