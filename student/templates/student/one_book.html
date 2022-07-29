@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #a40c1e;
+        width: 100%;
+      }
+      li {
+        float: left;
+      }
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      .active {
+        background-color: aliceblue;
+        color: black;
+      }
+      li :hover:not(.active) {
+        background-color: #2d608e;
+      }
+      .logo {
+        width: 80%;
+      }
+      .navbar {
+        margin-top: 5%;
+        float: right;
+      }
+      .container {
+        font-size: 2em;
+      }
+      .form {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+        <li><img class="logo" src="{% static 'logo1.PNG' %}" alt="logo" /></li>
+            <div class="navbar">
+          <li>
+            <a class="active" href="{% url 'book_list' %}">Available books</a>
+          </li>
+          <li>
+            <a href="">My books</a>
+          </li>
+          <li>
+            <a href="">Notifications</a>
+          </li>
+          <li>
+            <a href="{% url 'logout' %}">Logout</a>
+          </li></ul></div>
+          <div class="form">
+          <form method="POST" action="{% url 'search_book' %}">
+            {% csrf_token %}
+            <input type="search" placeholder="search by name" name="searched">
+            <button type="submit">search</button>
+          </form>
+        </div>
+        <div class="container">
+            {% for item in book %}
+            <p><hr />
+            <div style="color: lawngreen;">
+            <strong>{{ item.name }} </strong></div><br />
+            {% if item.image %}
+            <img src="{{ item.image.url }}" alt="book cover", width="10%">
+            {% endif %} <br>
+            
+            <b>Author:</b> {{ item.author }} <br />
+            <b>Description:</b> {{ item.description }}
+            
+            <hr /></p>
+            <p><a href="">borrow book</a></p>
+            {% endfor %}
+          </div>
+    <p>
+      Go back to the list of
+      <a href="{% url 'book_list' %}">available books</a>
+    </p>
+  </body>
+</html>
