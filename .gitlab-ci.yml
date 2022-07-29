@@ -7,7 +7,32 @@
 # See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 stages:
 - test
-sast:
+- deploy
+test:
   stage: test
-include:
-- template: Security/SAST.gitlab-ci.yml
+  image: python:3.7.9
+  before_script:
+    - pip install -r requirements.txt
+  
+  when: on_success
+  script:
+    - python manage.py migrate
+    - python manage.py collectstatic --noinput
+  only:
+    - main
+
+deploy:
+  image: ruby:latest
+  stage: deploy
+  before_script:
+    - gem install dpl
+  
+  script:
+    - dpl --provider=heroku --app=lib-syst --api-key=2e0e9407-1077-432d-a81d-41cf59f00e21
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+
+  environment:
+    name: main
+    url: $HEROKU_APP_HOST
+  only:
+    - main
