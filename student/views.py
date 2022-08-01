@@ -18,3 +18,11 @@ def book_list(request):
 def one_book(request, pk):
     books = Book.objects.filter(pk=pk)
     return render(request, 'student/one_book.html', {'book': books})
+
+
+def search_book(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        books = Book.objects.filter(name__contains=searched)
+        return render(request, 'student/search.html', {'searched': searched, 'books': books})
+
