@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>library system | search</title>
+  </head>
+  <body>
+    {% if searched %}
+    <p>You searched for "{{ searched }}"</p>
+    <h4>Here is what we have found</h4>
+    {% for book in books %} - <a href="students/books/{{ book.pk }}">{{ book.name }}</a>
+    <br />
+    {% endfor %} {% else %}
+    <p>hey! you forgot to search for a book</p>
+    {% endif %}
+  </body>
+</html>
