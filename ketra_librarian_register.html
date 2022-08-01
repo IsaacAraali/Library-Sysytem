@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-UA-Compatible" content="ie=edge">
+    <title>library</title>
+</head>
+<body>
+    <section id="Register" class=" py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card">
+                        <div class="card-header text-black">
+                            <h2>Register</h2>
+                        </div>
+                        <div class="card-body">
+                                <form action="{% url 'librarian_register' %}" method="POST" novalidate>
+                                    {% csrf_token %}
+                                    {{form.as_p}}
+                                    <button type="submit">register</button>
+                                </form>
+                        </div>
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+    </section>
+
+                
+</body>
+</html>                
+
+
+
+
+                
+
+                
