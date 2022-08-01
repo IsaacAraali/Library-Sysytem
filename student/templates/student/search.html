@@ -10,7 +10,7 @@
     {% if searched %}
     <p>You searched for "{{ searched }}"</p>
     <h4>Here is what we have found</h4>
-    {% for book in books %} - <a href="students/books/{{ book.pk }}">{{ book.name }}</a>
+    {% for book in books %} - <a href="books/{{ book.pk }}">{{ book.name }}</a>
     <br />
     {% endfor %} {% else %}
     <p>hey! you forgot to search for a book</p>
