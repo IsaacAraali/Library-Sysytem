@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Book
 from .book_form import BooksForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -9,13 +10,13 @@ from django.contrib import messages
 def home(request):
     return render(request, 'base/index.html')
 
-
+@login_required(login_url='login')
 def books(request):
     all = Book.objects.all
     context = {'book': all}
     return render(request, 'base/books.html', context)
 
-
+@login_required(login_url='login')
 def add_books(request):
     if request.method == 'POST' or None:
         form = BooksForm(request.POST, request.FILES)
@@ -28,12 +29,12 @@ def add_books(request):
         return render(request, 'base/add_book.html', {'form': form})
     form = BooksForm()
 
-
+@login_required(login_url='login')
 def my_book(request, pk):
     books = Book.objects.filter(pk=pk)
     return render(request, 'base/my_book.html', {'book': books})
 
-
+@login_required(login_url='login')
 def update_book(request, pk):
     book = Book.objects.get(pk=pk)
     form = BooksForm(instance=book)
@@ -47,7 +48,7 @@ def update_book(request, pk):
         form = BooksForm(instance=book)
         return render(request, 'base/add_book.html', {'form': form})
 
-
+@login_required(login_url='login')
 def delete_book(request, pk):
     books = Book.objects.get(pk=pk)
     if request.method == 'POST':
