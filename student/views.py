@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from base.models import Book
 from django.contrib import messages
 from .book_form import BookrequestForm
+from .models import Bookrequest
 
 # Create your views here.
 
@@ -19,16 +20,15 @@ def borrowed_books(request):
         subject = form.cleaned_data['subject']
 
         r = Bookrequest(student_name=student_name, student_number=student_number, name=name,  author=author,
-                      category=category, subject=subject
-                      )
+                        category=category, subject=subject
+                        )
         r.save()
         messages.success(request, 'Request was successfully sent')
         return redirect('book_list')
     context = {'title': title,
-                   'form': form,
-                   }
-    return render(request, 'request.html', context)
-
+               'form': form,
+               }
+    return render(request, 'student/request.html', context)
 
 
 def book_list(request):
@@ -47,4 +47,3 @@ def search_book(request):
         searched = request.POST['searched']
         books = Book.objects.filter(name__contains=searched)
         return render(request, 'student/search.html', {'searched': searched, 'books': books})
-

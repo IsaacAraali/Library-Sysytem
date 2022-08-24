@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .register_form import LibSignUpForm, StudSignUpForm
+from .register_form import LibSignUpForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -16,24 +16,10 @@ def lib_register(request):
             return redirect('login')
 
         else:
+            messages.error(request, 'account not created')
             form = LibSignUpForm()
             return render(request, 'accounts/register.html', {'form': form})
     form = LibSignUpForm(request.POST)
-    return render(request, 'accounts/register.html', {'form': form})
-
-
-def stud_register(request):
-    if request.method == 'POST':
-        form = StudSignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "account created successfully!")
-            return redirect('login')
-
-        else:
-            form = StudSignUpForm()
-            return render(request, 'accounts/register.html', {'form': form})
-    form = StudSignUpForm(request.POST)
     return render(request, 'accounts/register.html', {'form': form})
 
 

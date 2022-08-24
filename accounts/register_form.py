@@ -25,27 +25,6 @@ class LibSignUpForm(UserCreationForm):
         user.is_staff = True
 
 
-class StudSignUpForm(UserCreationForm):
-    first_name = forms.CharField(
-        max_length=30)
-    last_name = forms.CharField(
-        max_length=30)
-    email = forms.EmailField(
-        max_length=254, help_text='Required. Inform a valid email address.')
-    student_number = forms.CharField(required=True)
-    registration_number = forms.CharField(required=True)
-
-    class Meta:
-        model = User
-        fields = ('username', 'first_name', 'last_name',
-                  'email', 'student_number', 'registration_number', 'password1', 'password2', )
-
-    @transaction.atomic
-    def data_save(self):
-        user = super().save(commit=False)
-        user.is_student = True
-
-
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=30)
     password = forms.CharField(

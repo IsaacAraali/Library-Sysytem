@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>library system | available books</title>
     <style>
-        ul {
+      ul {
         list-style-type: none;
         margin: 0;
         padding: 0;
@@ -45,31 +45,31 @@
       .form {
         float: right;
       }
+
     </style>
   </head>
   <body>
-    <ul>
-        <li><img class="logo" src="{% static 'logo1.PNG' %}" alt="logo" /></li>
-            <div class="navbar">
-          <li>
-            <a class="active" href="{% url 'book_list' %}">Available books</a>
-          </li>
-          <li>
-            <a href="">My books</a>
-          </li>
-          <li>
-            <a href="">Notifications</a>
-          </li>
-          <li>
-            <a href="{% url 'logout' %}">Logout</a>
-          </li></ul></div>
-          <div class="form">
-          <form method="POST" action="{% url 'search_book1' %}">
-            {% csrf_token %}
-            <input type="search" placeholder="search by name" name="searched">
-            <button type="submit">search</button>
-          </form>
-        </div>
+    {% if messages %} {% for message in messages %} {{ message }} {% endfor %}
+    {% endif %}
+<ul>
+  <li><img class="logo" src="{% static 'logo1.PNG' %}" alt="logo" /></li>
+      <div class="navbar">
+    <li>
+      <a class="active" href="{% url 'book_list' %}">Available books</a>
+    </li>
+    <li>
+      <a href="{% url 'borrow_books' %}">Request a book</a>
+    </li>
+    <li>
+      <a href="mailto:musemezamurungiisaac@gmail.com">email us</a>
+    </li></ul></div>
+    <div class="form">
+    <form method="POST" action="{% url 'search_book1' %}">
+      {% csrf_token %}
+      <input type="search" placeholder="search by name" name="searched">
+      <button type="submit">search</button>
+    </form>
+  </div>
         <div class="container">
             {% for item in book %}
             <p><hr />
@@ -83,7 +83,7 @@
             <b>Description:</b> {{ item.description }}
             
             <hr /></p>
-            <p><a href="">borrow book</a></p>
+            <p><a href="{% url 'borrow_books' %}">borrow book</a></p>
             {% endfor %}
           </div>
     <p>

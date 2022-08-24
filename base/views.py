@@ -11,11 +11,13 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request, 'base/index.html')
 
+
 @login_required(login_url='login')
 def books(request):
     all = Book.objects.all
     context = {'book': all}
     return render(request, 'base/books.html', context)
+
 
 @login_required(login_url='login')
 def add_books(request):
@@ -30,10 +32,12 @@ def add_books(request):
         return render(request, 'base/add_book.html', {'form': form})
     form = BooksForm()
 
+
 @login_required(login_url='login')
 def my_book(request, pk):
     books = Book.objects.filter(pk=pk)
     return render(request, 'base/my_book.html', {'book': books})
+
 
 @login_required(login_url='login')
 def update_book(request, pk):
@@ -48,6 +52,7 @@ def update_book(request, pk):
     else:
         form = BooksForm(instance=book)
         return render(request, 'base/add_book.html', {'form': form})
+
 
 @login_required(login_url='login')
 def delete_book(request, pk):
@@ -65,6 +70,7 @@ def search_book(request):
         return render(request, 'base/search.html', {'searched': searched, 'books': books})
 
 
+@login_required(login_url='login')
 def issuing(request):
     title = 'Issue Book'
     form = IssueBookForm(request.POST or None)
@@ -78,8 +84,7 @@ def issuing(request):
         category = form.cleaned_data['category']
         subject = form.cleaned_data['subject_area']
 
-
-        p = IssueBook(student_name=student_name,student_number=student_number,name=name, isbn=isbn, author=author,
+        p = IssueBook(student_name=student_name, student_number=student_number, name=name, isbn=isbn, author=author,
                       category=category, subject_area=subject
                       )
         p.save()
@@ -90,6 +95,8 @@ def issuing(request):
                }
     return render(request, 'base/issuing.html', context)
 
+
+@login_required(login_url='login')
 def issued(request):
     title = 'All Issued  books'
     queryset = IssueBook.objects.all()
@@ -101,7 +108,9 @@ def issued(request):
 
     return render(request, 'base/issued.html', context)
 
-    def requests(request):
+
+@login_required(login_url='login')
+def requests(request):
     title = 'All requested  books'
     queryset = Bookrequest.objects.all()
 
@@ -111,4 +120,3 @@ def issued(request):
                }
 
     return render(request, 'base/requested.html', context)
-

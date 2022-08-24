@@ -58,13 +58,10 @@
       <a class="active" href="{% url 'book_list' %}">Available books</a>
     </li>
     <li>
-      <a href="">My books</a>
+      <a href="{% url 'borrow_books' %}">Request a book</a>
     </li>
     <li>
-      <a href="">Notifications</a>
-    </li>
-    <li>
-      <a href="{% url 'logout' %}">Logout</a>
+      <a href="mailto:musemezamurungiisaac@gmail.com">email us</a>
     </li></ul></div>
     <div class="form">
     <form method="POST" action="{% url 'search_book1' %}">
