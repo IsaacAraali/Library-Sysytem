@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Book
-from .book_form import BooksForm
+from .book_form import BooksForm, IssueBookForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
