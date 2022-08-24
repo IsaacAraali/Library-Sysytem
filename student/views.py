@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from base.models import Book
 from django.contrib import messages
-from . import BookrequestForm
+from .book_form import BookrequestForm
 
 # Create your views here.
 
