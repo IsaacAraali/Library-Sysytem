@@ -5,11 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>library system | add a book</title>
+    <title>library system | available books</title>
     <style>
-      body {
-        text-align: justify;
-      }
       ul {
         list-style-type: none;
         margin: 0;
@@ -39,36 +36,44 @@
         width: 80%;
       }
       .navbar {
+        float: right;
         margin-top: 5%;
         float: right;
       }
       .container {
         font-size: 2em;
       }
+      .form {
+        float: right;
+      }
+
     </style>
   </head>
   <body>
-    <ul>
-      <li><img class="logo" src="{% static 'logo1.PNG' %}" alt="logo" /></li>
+    {% if messages %} {% for message in messages %} {{ message }} {% endfor %}
+    {% endif %}
+<ul>
+  <li><img class="logo" src="{% static 'logo1.PNG' %}" alt="logo" /></li>
       <div class="navbar">
-        <li>
-          <a href="{% url 'available_books' %}">Available books</a>
-        </li>
-        <li>
-          <a href="">Borrowed books</a>
-        </li>
-        <li><a href="{% url 'issuing' %}">Issue Book</a></li>
-        <li>
-          <a href="">Notifications</a>
-        </li>
-        <li>
-          <a class="active" href="{% url 'add_book' %}">Add a Book</a>
-        </li>
-        <li>
-          <a href="{% url 'logout' %}">Logout</a>
-        </li>
-      </div>
-    </ul>
+    <li>
+      <a href="{% url 'available_books' %}">Available books</a>
+    </li>
+    <li><a href="{% url 'issuing' %}">Issue Book</a></li>
+    
+    <li>
+      <a href="{% url 'issued' %}">Issued Books</a>
+    </li>
+    
+    <li>
+      <a href="{% url 'requested' %}">Requested Books</a>
+    </li>
+    <li>
+      <a class="active" href="{% url 'add_book' %}">Add a Book</a>
+    </li>
+    <li>
+      <a href="{% url 'logout' %}">Logout</a>
+    </li></ul></div>
+
     <div class="container">
       <form method="POST" action="" , enctype="multipart/form-data">
         {% csrf_token %} {{ form|crispy }}

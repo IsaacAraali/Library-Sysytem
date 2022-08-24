@@ -56,14 +56,16 @@
   <li><img class="logo" src="{% static 'logo1.PNG' %}" alt="logo" /></li>
       <div class="navbar">
     <li>
-      <a  href="{% url 'available_books' %}">Available books</a>
-    </li>
-    <li>
-      <a href="">Borrowed books</a>
+      <a href="{% url 'available_books' %}">Available books</a>
     </li>
     <li><a class="active" href="{% url 'issuing' %}">Issue Book</a></li>
+    
     <li>
-      <a href="">Notifications</a>
+      <a href="{% url 'issued' %}">Issued Books</a>
+    </li>
+    
+    <li>
+      <a href="{% url 'requested' %}">Requested Books</a>
     </li>
     <li>
       <a href="{% url 'add_book' %}">Add a Book</a>
