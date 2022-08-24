@@ -98,5 +98,5 @@ def issued(request):
 
                }
 
-    return render(request, 'issued.html', context)
+    return render(request, 'base/issued.html', context)
 
