@@ -89,3 +89,14 @@ def issuing(request):
                }
     return render(request, 'base/issuing.html', context)
 
+def issued(request):
+    title = 'All Issued  books'
+    queryset = IssueBook.objects.all()
+
+    context = {'title': title,
+               'queryset': queryset,
+
+               }
+
+    return render(request, 'issued.html', context)
+
