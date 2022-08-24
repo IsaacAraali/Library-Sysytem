@@ -1,12 +1,32 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from base.models import Book
 
 # Create your views here.
 
 
-def borrowed_books(request):
+def borrow_books(request):
+    title = 'request Book'
+    form = BookrequestForm(request.POST)
 
-    return 0
+    if form.is_valid():
+        student_name = form.cleaned_data['student_name']
+        student_number = form.cleaned_data['student_number']
+        name = form.cleaned_data['name']
+        author = form.cleaned_data['author']
+        category = form.cleaned_data['category']
+        subject = form.cleaned_data['subject']
+
+        r = Bookrequest(student_name=student_name, student_number=student_number, name=name,  author=author,
+                      category=category, subject=subject
+                      )
+        r.save()
+        messages.success(request, 'Request was successfully sent')
+        return redirect('book_list')
+    context = {'title': title,
+                   'form': form,
+                   }
+    return render(request, 'request.html', context)
+
 
 
 def book_list(request):
