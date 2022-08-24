@@ -1,0 +1,33 @@
+
+
+ <center><h1>{{title}}</h1></center>
+ <table>
+     <thead>
+         <tr>
+             <td>STUDENT_NAME</td>
+             <td>STUDENT_NUMBER</td>
+             <td>NAME</td>
+             <td>AUTHOR</td>
+             <td>CATEGORY</td>
+             <td>SUBJECT</td>
+
+
+         </tr>
+     </thead>
+
+     <tbody>
+     {% for K in queryset %}
+         <tr>
+             <td>{{ K.student_name }}</td>
+             <td>{{ K.student_number }}</td>
+             <td>{{ K.name }}</td>
+             <td>{{ K.author }}</td>
+             <td>{{ K.category }}</td>
+             <td>{{ K.subject }}</td>
+
+
+         </tr>
+
+     </tbody>
+{% endfor %}
+ </table>

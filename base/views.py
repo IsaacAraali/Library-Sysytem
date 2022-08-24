@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Book
+from .models import Book, IssueBook
+from student.models import Bookrequest
 from .book_form import BooksForm, IssueBookForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -99,4 +100,15 @@ def issued(request):
                }
 
     return render(request, 'base/issued.html', context)
+
+    def requests(request):
+    title = 'All requested  books'
+    queryset = Bookrequest.objects.all()
+
+    context = {'title': title,
+               'queryset': queryset,
+
+               }
+
+    return render(request, 'base/requested.html', context)
 
