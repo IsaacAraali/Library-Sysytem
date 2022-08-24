@@ -25,3 +25,20 @@ class BorrowedBook(models.Model):
 
     def __str__(self):
         return self.book_id + ' ' + self.book_name + ' ' + str(self.date_borrowed) + ' ' + str(self.date_return) + ' ' + self.std_id + ' ' + self.std_name
+
+def get_expiry():
+    return datetime.today() + timedelta(days=5)
+
+class IssueBook(models.Model):
+    student_name = models.CharField(max_length=225)
+    student_number = models.IntegerField()
+    name = models.CharField(max_length=223)
+    isbn = models.IntegerField()
+    author = models.CharField(max_length=225)
+    category = models.CharField(max_length=225)
+    subject_area = models.CharField(max_length=20)
+    issue_date = models.DateTimeField(auto_now=True)
+    expiry_date = models.DateTimeField(default=get_expiry)
+
+    def __str__(self):
+        return self.student_name + ' ' + self.name + ' ' + ' ' + self.issue_date

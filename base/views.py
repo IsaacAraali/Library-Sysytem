@@ -62,3 +62,30 @@ def search_book(request):
         searched = request.POST['searched']
         books = Book.objects.filter(name__contains=searched)
         return render(request, 'base/search.html', {'searched': searched, 'books': books})
+
+
+def issuing(request):
+    title = 'Issue Book'
+    form = IssueBookForm(request.POST or None)
+
+    if form.is_valid():
+        student_name = form.cleaned_data['student_name']
+        student_number = form.cleaned_data['student_number']
+        name = form.cleaned_data['name']
+        isbn = form.cleaned_data['isbn']
+        author = form.cleaned_data['author']
+        category = form.cleaned_data['category']
+        subject = form.cleaned_data['subject_area']
+
+
+        p = IssueBook(student_name=student_name,student_number=student_number,name=name, isbn=isbn, author=author,
+                      category=category, subject_area=subject
+                      )
+        p.save()
+        messages.success(request, "book issued successfully")
+        return redirect('available_books')
+    context = {'title': title,
+               'form': form,
+               }
+    return render(request, 'base/issuing.html', context)
+
