@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>library system | available books</title>
+    <style>
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #a40c1e;
+        width: 100%;
+      }
+      li {
+        float: left;
+      }
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      .active {
+        background-color: #ffffff;
+        color: black;
+      }
+      li :hover:not(.active) {
+        background-color: #2d608e;
+      }
+      .logo {
+        width: 80%;
+      }
+      .navbar {
+        margin-top: 5%;
+        float: right;
+      }
+      .container {
+        font-size: 2em;
+      }
+      .form {
+        float: right;
+      }
+
+    </style>
+  </head>
+  <body>
+    {% if messages %} {% for message in messages %} {{ message }} {% endfor %}
+    {% endif %}
+<ul>
+  <li><img class="logo" src="{% static 'logo1.PNG' %}" alt="logo" /></li>
+      <div class="navbar">
+    <li>
+      <a href="{% url 'book_list' %}">Available books</a>
+    </li>
+    <li>
+      <a href="">My books</a>
+    </li>
+    <li>
+      <a class="active" href="{% url 'borrow_books' %}">Request</a>
+    </li>
+    <li>
+      <a href="{% url 'logout' %}">Logout</a>
+    </li></ul></div>
+    <div class="form">
+    <form method="POST" action="{% url 'search_book1' %}">
+      {% csrf_token %}
+      <input type="search" placeholder="search by name" name="searched">
+      <button type="submit">search</button>
+    </form>
+  </div>
+
+<center><h1>{{title}}</h1></center>
+<form method = 'post' >{%csrf_token%}
+     {{form.as_p}}
+     <button type = "Submit">send</button>
+</form>
+  </body>
+</html>
