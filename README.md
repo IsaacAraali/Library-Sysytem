@@ -2,7 +2,19 @@
 
 A library system for managing book borrowing 
 
-## Getting started
+## Features of this project
+librarian can:
+   login and signup into the library system.
+   issue a book to the student.
+   update books.
+   delete books.
+   view issued books and the details of the student who has borrowed the book.
+
+Student can:
+   login and signup into the lbrary system.
+   borrow a book.
+
+
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
